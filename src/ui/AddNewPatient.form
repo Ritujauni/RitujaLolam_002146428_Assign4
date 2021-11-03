@@ -65,18 +65,17 @@
                               <Component id="lbladdress" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <Component id="lblage" min="-2" pref="105" max="-2" attributes="0"/>
+                          <Component id="lblinscno" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jmedino3" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblall" min="-2" pref="112" max="-2" attributes="0"/>
+                          <Component id="lbldiab" min="-2" pref="112" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="lblinscno" min="-2" pref="97" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -177,18 +176,21 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtinsno" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                   <Component id="jinsurno" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="lblinscno" alignment="1" min="-2" pref="28" max="-2" attributes="0"/>
+                  <Component id="lblinscno" alignment="0" min="-2" pref="28" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jdiab" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                   <Component id="txtdiab" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                  <Component id="jmedino3" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                  <Component id="lbldiab" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jaller" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="txtaller" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jaller" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="txtaller" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="lblall" min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Component id="bttnupdate" min="-2" max="-2" attributes="0"/>
@@ -461,15 +463,21 @@
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtallerKeyReleased"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jmedino3">
+    <Component class="javax.swing.JLabel" name="lbldiab">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Sitka Text" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="(Yes/No)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblinscno">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblall">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Sitka Text" size="14" style="0"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

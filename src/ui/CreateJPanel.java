@@ -314,7 +314,7 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
         // TODO add your handling code here:
-        String licPlate = txtage.getText();
+        String personid = txtpersonid.getText();
         
         if (combogender1.isSelected()){
             main_expired = combogender1.getText();
@@ -327,14 +327,14 @@ public class CreateJPanel extends javax.swing.JPanel {
             main_expired = combogender3.getText();
         }
         
-//        for (CarInfo ci : history.getHistory()){
-//            if(ci.getLicensePlateno().contains(licPlate)){
-//                JOptionPane.showMessageDialog(this, "License Plate No. already exists!");
-//                return;
-//            }
-//            else
-//                break;
-//        }
+        for (CarInfo ci : history.getHistory()){
+            if(ci.getPersonid().contains(personid)){
+                JOptionPane.showMessageDialog(this, "Person ID already exists!");
+                return;
+            }
+            else
+                break;
+        }
         
         
         if(txtname.getText().length()<=0 || txtaddress.getText().length()<=0 || 

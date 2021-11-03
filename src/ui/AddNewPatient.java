@@ -80,8 +80,9 @@ public class AddNewPatient extends javax.swing.JPanel {
         txtdiab = new javax.swing.JTextField();
         jaller = new javax.swing.JLabel();
         txtaller = new javax.swing.JTextField();
-        jmedino3 = new javax.swing.JLabel();
+        lbldiab = new javax.swing.JLabel();
         lblinscno = new javax.swing.JLabel();
+        lblall = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 153));
 
@@ -232,8 +233,9 @@ public class AddNewPatient extends javax.swing.JPanel {
             }
         });
 
-        jmedino3.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
-        jmedino3.setText("(Yes/No)");
+        lbldiab.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
+
+        lblall.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -277,16 +279,15 @@ public class AddNewPatient extends javax.swing.JPanel {
                                 .addComponent(lblgender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblname, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lbladdress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(lblage, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblage, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblinscno, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jmedino3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblinscno, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblall, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbldiab, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -365,11 +366,13 @@ public class AddNewPatient extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jdiab, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtdiab, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jmedino3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbldiab, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jaller, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtaller, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jaller, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtaller, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblall, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(bttnupdate)
                 .addGap(55, 55, 55))
@@ -378,6 +381,7 @@ public class AddNewPatient extends javax.swing.JPanel {
 
     private void bttnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnupdateActionPerformed
         // TODO add your handling code here:
+        String patientid = txtpatientid.getText();
         int selectedRowIndex = tblpersondetails.getSelectedRow();
         
         if (selectedRowIndex<0){
@@ -391,6 +395,15 @@ public class AddNewPatient extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Any field is left blank!");
         }
         else{
+            
+            for (Patient p : patienthistory.getPatienthistory()){
+            if(p.getPatientid().contains(patientid)){
+                JOptionPane.showMessageDialog(this, "Patient already exists!");
+                return;
+            }
+            else
+                break;
+            }
                  
             //populateTable();
         
@@ -540,11 +553,11 @@ public class AddNewPatient extends javax.swing.JPanel {
         Pattern pat = Pattern.compile(PAT);
         Matcher m = pat.matcher(txtinsno.getText());
         if(m.matches()){
-            lblname.setText(null);
+            lblinscno.setText(null);
             bttnupdate.setEnabled(true);
         }
         else{
-            lblname.setText("Enter 4 characters!");
+            lblinscno.setText("Enter 4 digits!");
             bttnupdate.setEnabled(false);
             
         }
@@ -552,10 +565,33 @@ public class AddNewPatient extends javax.swing.JPanel {
 
     private void txtdiabKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdiabKeyReleased
         // TODO add your handling code here:
+        String PAT = "^(Yes|yes|No|no)$";
+        Pattern pat = Pattern.compile(PAT);
+        Matcher m = pat.matcher(txtdiab.getText());
+        if(m.matches()){
+            lbldiab.setText(null);
+            bttnupdate.setEnabled(true);
+        }
+        else{
+            lbldiab.setText("Yes/No");
+            bttnupdate.setEnabled(false);
+        }
     }//GEN-LAST:event_txtdiabKeyReleased
 
     private void txtallerKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtallerKeyReleased
         // TODO add your handling code here:
+        String PAT = "^[A-Za-z ,A-Za-z]{0,50}$";
+        Pattern pat = Pattern.compile(PAT);
+        Matcher m = pat.matcher(txtaller.getText());
+        if(m.matches()){
+            lblall.setText(null);
+            bttnupdate.setEnabled(true);
+        }
+        else{
+            lblall.setText("Invalid Entry!");
+            bttnupdate.setEnabled(false);
+            
+        }
     }//GEN-LAST:event_txtallerKeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -578,13 +614,14 @@ public class AddNewPatient extends javax.swing.JPanel {
     private javax.swing.JLabel jlocation;
     private javax.swing.JLabel jmaintenance;
     private javax.swing.JLabel jmanufyear;
-    private javax.swing.JLabel jmedino3;
     private javax.swing.JLabel jpersonid;
     private javax.swing.JLabel jseats;
     private javax.swing.JLabel jviewtitle;
     private javax.swing.JLabel lbladdress;
     private javax.swing.JLabel lblage;
+    private javax.swing.JLabel lblall;
     private javax.swing.JLabel lblcommunity;
+    private javax.swing.JLabel lbldiab;
     private javax.swing.JLabel lblgender;
     private javax.swing.JLabel lblinscno;
     private javax.swing.JLabel lblname;
